@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarAI : MonoBehaviour
 {
-    private const float DELETE_INTERVAL = 20f;
+    private const float DELETE_INTERVAL = 100f;
 
     [SerializeField] private float maxMovementSpeed = 5f;
     [SerializeField] private LayerMask blockingLayer;
@@ -97,7 +97,7 @@ public class CarAI : MonoBehaviour
 
     private void Brake()
     {
-        MovementSpeed -= maxMovementSpeed / 4f * Time.deltaTime; // <-- braking speed
+        MovementSpeed -= maxMovementSpeed / 2f * Time.deltaTime; // <-- braking speed
     }
 
     private void Move() 
@@ -115,7 +115,7 @@ public class CarAI : MonoBehaviour
     }
     private void Delete() 
     {
-        if (transform.position.y + DELETE_INTERVAL < player.transform.position.y)
+        if (Vector2.Distance(transform.position,player.transform.position) > DELETE_INTERVAL)
         {
             Destroy(gameObject);
         }

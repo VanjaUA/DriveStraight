@@ -11,6 +11,10 @@ public class CarSpawner : MonoBehaviour
     [SerializeField]
     private float[] spawnCarPositionsX_Road3x3;
 
+    [SerializeField] private LayerMask carsLayer;
+
+    private float intervalToSpawn = 5f;
+
     private RoadManager roadManager;
 
     private void Start()
@@ -22,11 +26,16 @@ public class CarSpawner : MonoBehaviour
 
     private IEnumerator SpawnCars() 
     {
+        float delayToSpawnCars = 2f;
+
         while (true)
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(delayToSpawnCars);
+
             GameObject carToSpawn = carsToSpawn[Random.Range(0, carsToSpawn.Length)];
             Vector3 positionToSpawn;
+
+            GameObject newCar;
             // TODO: change this fucking system make struct or scriptable object
             if (roadManager.CurrentRoad == RoadManager.RoadCode.Road3x3)
             {
@@ -36,17 +45,33 @@ public class CarSpawner : MonoBehaviour
             {
                  positionToSpawn = new Vector3(spawnCarPositionsX_Road2x2[Random.Range(0, spawnCarPositionsX_Road2x2.Length)], roadManager.LastYPosition, 0);
             }
-            GameObject car = Instantiate(carToSpawn,positionToSpawn, Quaternion.identity);
 
-            if (positionToSpawn.x > 0)
+            if (CheckIfCanSpawnCar(positionToSpawn))
             {
-                //by movement
+                newCar = Instantiate(carToSpawn, positionToSpawn, Quaternion.identity);
+
+                if (positionToSpawn.x > 0)
+                {
+                    //by movement
+                }
+                else
+                {
+                    //against the movement
+                    newCar.transform.localEulerAngles = new Vector3(0, 0, 180f);
+                }
             }
-            else
-            {
-                //against the movement
-                car.transform.localEulerAngles = new Vector3(0, 0, 180f);
-            }
+        }
+    }
+
+    private bool CheckIfCanSpawnCar(Vector3 positionToSpawn) 
+    {
+        if (Physics2D.Linecast(positionToSpawn - Vector3.up * intervalToSpawn, positionToSpawn + Vector3.up * intervalToSpawn, carsLayer))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 }
