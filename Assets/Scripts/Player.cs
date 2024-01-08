@@ -21,17 +21,15 @@ public class Player : MonoBehaviour
         get { return movementSpeed; }
         private set 
         {
-            if (value > maxMovementSpeed)
+            movementSpeed = value;
+
+            if (movementSpeed > maxMovementSpeed)
             {
                 movementSpeed = maxMovementSpeed;
             }
-            else if (value < MIN_MOVEMENT_SPEED)
+            else if (movementSpeed < MIN_MOVEMENT_SPEED)
             {
                 movementSpeed = MIN_MOVEMENT_SPEED;
-            }
-            else
-            {
-                movementSpeed = value;
             }
         }
     }
