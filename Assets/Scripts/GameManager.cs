@@ -7,16 +7,19 @@ public struct MinMax<T>
    public T max;
 }
 
+public enum Direction
+{
+    Right,
+    Left,
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField]
-    public CarSpawner carSpawner;
-    [SerializeField]
-    public RoadManager roadManager;
-    [SerializeField]
-    public Player player;
+    [SerializeField] public CarSpawner carSpawner;
+    [SerializeField] public RoadManager roadManager;
+    [SerializeField] public Player player;
 
     private void Awake()
     {

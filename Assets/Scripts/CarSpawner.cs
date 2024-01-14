@@ -1,15 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CarSpawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] carsToSpawn;
-    [SerializeField]
-    private float[] spawnCarPositionsX_Road2x2;
-    [SerializeField]
-    private float[] spawnCarPositionsX_Road3x3;
+    [SerializeField] private GameObject[] carsToSpawn;
 
     [SerializeField] private LayerMask carsLayer;
 
@@ -21,6 +16,7 @@ public class CarSpawner : MonoBehaviour
     {
         roadManager = GameManager.instance.roadManager;
         StartCoroutine(SpawnCars());
+
     }
 
 
@@ -36,19 +32,17 @@ public class CarSpawner : MonoBehaviour
             Vector3 positionToSpawn;
 
             GameObject newCar;
-            // TODO: change this fucking system make struct or scriptable object
-            if (roadManager.CurrentRoad == RoadManager.RoadCode.Road3x3)
-            {
-                 positionToSpawn = new Vector3(spawnCarPositionsX_Road3x3[Random.Range(0, spawnCarPositionsX_Road3x3.Length)], roadManager.LastYPosition, 0);
-            }
-            else
-            {
-                 positionToSpawn = new Vector3(spawnCarPositionsX_Road2x2[Random.Range(0, spawnCarPositionsX_Road2x2.Length)], roadManager.LastYPosition, 0);
-            }
+
+            RoadSO currentRoad = roadManager.CurrentRoad;
+
+            int lineIndex = Random.Range(0, currentRoad.lineXPositions.Length);
+
+            positionToSpawn = new Vector3(currentRoad.lineXPositions[lineIndex], roadManager.LastYPosition, 0);
 
             if (CheckIfCanSpawnCar(positionToSpawn))
             {
                 newCar = Instantiate(carToSpawn, positionToSpawn, Quaternion.identity);
+
 
                 if (positionToSpawn.x > 0)
                 {

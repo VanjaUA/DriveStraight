@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class CarAI : MonoBehaviour
 {
-    private const float DELETE_INTERVAL = 100f;
+    private const float DELETE_DISTANCE = 100f;
+    private const float SAFE_INTERVAL = 5f;
 
     [SerializeField] private float maxMovementSpeed = 5f;
     [SerializeField] private LayerMask blockingLayer;
 
+    [Header("Lights")]
     [SerializeField] private GameObject stopSignals;
+    [SerializeField] private GameObject rightSignal;
+    [SerializeField] private GameObject leftSignal;
 
     private float movementSpeed;
 
@@ -32,6 +36,9 @@ public class CarAI : MonoBehaviour
     }
 
     private bool haveObstacleInFront = false;
+    private bool switchingLine = false;
+
+    private float intervalBetweenLines;
 
     private Player player;
     private Rigidbody2D rb2D;
@@ -47,9 +54,11 @@ public class CarAI : MonoBehaviour
         stopSignals.SetActive(false);
 
         MovementSpeed = maxMovementSpeed;
+        intervalBetweenLines = GameManager.instance.roadManager.GetIntervalBetweenLines();
 
 
         StartCoroutine(CheckDirectionsCoroutine());
+
     }
 
     private void Update()
@@ -68,6 +77,62 @@ public class CarAI : MonoBehaviour
         }
     }
 
+    private IEnumerator BlinkCoroutine(GameObject objectToBlink) 
+    {
+        float delay = 0.15f;
+        objectToBlink.SetActive(false);
+
+        while (true)
+        {
+            yield return new WaitForSeconds(delay);
+            objectToBlink.SetActive(true);
+            yield return new WaitForSeconds(delay);
+            objectToBlink.SetActive(false);
+        }
+    }
+
+    private IEnumerator SwitchLineCoroutine(float newXPosition) 
+    {
+        float timeToSwithLine = 3f;
+        float timer = timeToSwithLine;
+
+        switchingLine = true;
+
+        Coroutine blinkMethod;
+        GameObject blinkObject;
+
+        if (Mathf.Abs(newXPosition) - Mathf.Abs(transform.position.x) > 0)
+        {
+            blinkMethod = StartCoroutine(BlinkCoroutine(rightSignal));
+            blinkObject = rightSignal;
+        }
+        else
+        {
+            blinkMethod = StartCoroutine(BlinkCoroutine(leftSignal));
+            blinkObject = leftSignal;
+        }
+
+
+        while (timer > 0)
+        {
+            float slideSpeed = MovementSpeed / 5 /* <-- slide speed */ * Time.deltaTime;
+            Vector3 newPosition = new Vector3(newXPosition,transform.position.y,transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position,newPosition,slideSpeed);
+
+
+            yield return new WaitForEndOfFrame();
+            timer -= Time.deltaTime;
+            if (Mathf.Abs(transform.position.x - newXPosition) <= Mathf.Epsilon)
+            {
+                break;
+            }
+        }
+
+        StopCoroutine(blinkMethod);
+        blinkObject.SetActive(false);
+        switchingLine = false;
+    }
+
     private void CheckForwardDirection() 
     {
         carCollider.enabled = false;
@@ -76,28 +141,78 @@ public class CarAI : MonoBehaviour
         {
             // Have something in front
             haveObstacleInFront = true;
-
-            stopSignals.SetActive(true);
+            if (switchingLine == false)
+            {
+                CheckSideDirections();
+            }
         }
         else
         {
             //Have NOT something in front
             haveObstacleInFront = false;
-
-            stopSignals.SetActive(false);
         }
 
         carCollider.enabled = true;
     }
 
+    private void CheckSideDirections() 
+    {
+        //!!!
+        //Every road must be centered on X -> 0
+        //!!!
+
+        if (Physics2D.Linecast(transform.position + transform.right * intervalBetweenLines + Vector3.down * SAFE_INTERVAL,
+            transform.position + transform.right * intervalBetweenLines + Vector3.up * SAFE_INTERVAL,blockingLayer) == false)
+        {
+            // Have free right side
+
+            StartCoroutine(SwitchLineCoroutine(transform.position.x + transform.right.x * intervalBetweenLines));
+
+            return;
+        }
+        if (Physics2D.Linecast(transform.position + transform.right * -1 * intervalBetweenLines + Vector3.down * SAFE_INTERVAL,
+            transform.position + transform.right * -1 * intervalBetweenLines + Vector3.up * SAFE_INTERVAL, blockingLayer) == false)
+        {
+            // Have free left side
+            if (transform.position.x > 0)
+            {
+                //On right
+                if (transform.position.x - intervalBetweenLines < 0)
+                {
+                    //Can NOT go to left
+                    return;
+                }
+            }
+            else
+            {
+                //On left
+                if (transform.position.x + intervalBetweenLines > 0)
+                {
+                    //Can NOT go to left
+                    return;
+                }
+            }
+
+            // Can go to left
+            StartCoroutine(SwitchLineCoroutine(transform.position.x + transform.right.x * -1 * intervalBetweenLines));
+
+            return;
+        }
+        //Have no free sides
+    }
+
     private void Accelerate() 
     {
         MovementSpeed += maxMovementSpeed / 10f * Time.deltaTime; // <-- acceleration speed
+
+        stopSignals.SetActive(false);
     }
 
     private void Brake()
     {
         MovementSpeed -= maxMovementSpeed / 2f * Time.deltaTime; // <-- braking speed
+
+        stopSignals.SetActive(true);
     }
 
     private void Move() 
@@ -115,9 +230,10 @@ public class CarAI : MonoBehaviour
     }
     private void Delete() 
     {
-        if (Vector2.Distance(transform.position,player.transform.position) > DELETE_INTERVAL)
+        if (Vector2.Distance(transform.position,player.transform.position) > DELETE_DISTANCE)
         {
             Destroy(gameObject);
         }
     }
+
 }

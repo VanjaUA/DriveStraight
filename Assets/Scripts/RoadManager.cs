@@ -15,55 +15,61 @@ public class RoadManager : MonoBehaviour
     private const float INTERVAL_BETWEEN_ROADS = 17f;
     private const int INTERVAL_TO_CHANGE_ROAD_MIN = 5;
     private const int INTERVAL_TO_CHANGE_ROAD_MAX = 8;
-    [SerializeField]
-    private GameObject[] roadPrefabs;
-    [SerializeField]
-    private float startYPosition;
+
+    [SerializeField] private RoadSO[] roads;
+
+    [SerializeField] private float startYPosition;
+
+    [SerializeField] private float intervalBetweenLines;
 
     private Player player;
 
     public float LastYPosition { get; private set; }
-    public RoadCode CurrentRoad { get; private set; }
+    public RoadSO CurrentRoad { get; private set; }
+
+    private List<GameObject> roadsOnScene = new List<GameObject>();
+
+
     private int amountToChangeRoad;
 
-    private List<GameObject> roads = new List<GameObject>();
 
     private void Start()
     {
         player = GameManager.instance.player;
 
-        CurrentRoad = RoadCode.Road2x2;
-        amountToChangeRoad = Random.RandomRange(INTERVAL_TO_CHANGE_ROAD_MIN, INTERVAL_TO_CHANGE_ROAD_MAX);
+        CurrentRoad = roads[0];
+
+        amountToChangeRoad = Random.Range(INTERVAL_TO_CHANGE_ROAD_MIN, INTERVAL_TO_CHANGE_ROAD_MAX + 1);
 
         LastYPosition = startYPosition;
-        SpawnRoad(roadPrefabs[(int)CurrentRoad], LastYPosition);
+        SpawnRoad(CurrentRoad.roadPrefab, LastYPosition);
     }
 
     private void Update()
     {
         if (LastYPosition - player.transform.position.y < INTERVAL_BETWEEN_ROADS * 2)
         {
-            SpawnRoad(roadPrefabs[(int)CurrentRoad],LastYPosition);
+            SpawnRoad(CurrentRoad.roadPrefab, LastYPosition);
             DeleteRoad();
         }
     }
 
-    private void DeleteRoad() 
+    private void DeleteRoad()
     {
-        foreach (var road in roads)
+        foreach (var road in roadsOnScene)
         {
             if (player.transform.position.y - road.transform.position.y > INTERVAL_BETWEEN_ROADS * 2)
             {
-                roads.Remove(road);
+                roadsOnScene.Remove(road);
                 Destroy(road);
                 return;
             }
         }
     }
 
-    private void SpawnRoad(GameObject road,float yPosition) 
+    private void SpawnRoad(GameObject road, float yPosition)
     {
-        roads.Add(Instantiate(road, new Vector3(0, yPosition, 0), Quaternion.identity, this.transform));
+        roadsOnScene.Add(Instantiate(road, new Vector3(0, yPosition, 0), Quaternion.identity, this.transform));
         LastYPosition += INTERVAL_BETWEEN_ROADS;
 
         amountToChangeRoad--;
@@ -73,26 +79,33 @@ public class RoadManager : MonoBehaviour
         }
     }
 
-    private void ChangeRoadType() 
+    private void ChangeRoadType()
     {
-        switch (CurrentRoad)
+        switch (CurrentRoad.roadCode)
         {
-            case RoadCode.Road2x2:
-                CurrentRoad = RoadCode.Road2x2To3x3;
-                break;
             case RoadCode.Road2x2To3x3:
-                CurrentRoad = RoadCode.Road3x3;
-                amountToChangeRoad = Random.RandomRange(INTERVAL_TO_CHANGE_ROAD_MIN, INTERVAL_TO_CHANGE_ROAD_MAX);
+                amountToChangeRoad = Random.Range(INTERVAL_TO_CHANGE_ROAD_MIN, INTERVAL_TO_CHANGE_ROAD_MAX + 1);
                 break;
-            case RoadCode.Road3x3:
-                CurrentRoad = RoadCode.Road3x3To2x2;
-                break;
+
             case RoadCode.Road3x3To2x2:
-                CurrentRoad = RoadCode.Road2x2;
-                amountToChangeRoad = Random.RandomRange(INTERVAL_TO_CHANGE_ROAD_MIN, INTERVAL_TO_CHANGE_ROAD_MAX);
-                break;
-            default:
+                amountToChangeRoad = Random.Range(INTERVAL_TO_CHANGE_ROAD_MIN, INTERVAL_TO_CHANGE_ROAD_MAX + 1);
                 break;
         }
+
+        if ((int)CurrentRoad.roadCode + 1 >= roads.Length)
+        {
+            CurrentRoad = roads[0];
+        }
+        else
+        {
+            CurrentRoad = roads[(int)CurrentRoad.roadCode + 1];
+        }
     }
+
+
+    public float GetIntervalBetweenLines() 
+    {
+        return intervalBetweenLines;
+    }
+
 }
