@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
 public struct MinMax<T>
 {
    public T min;

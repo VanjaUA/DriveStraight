@@ -436,6 +436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 544829850}
+  - component: {fileID: 544829851}
   m_Layer: 0
   m_Name: ObjectsSpawner
   m_TagString: Untagged
@@ -452,12 +453,61 @@ Transform:
   m_GameObject: {fileID: 544829849}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7937857, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &544829851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544829849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be601a68f16c2be47a91fb502b43d219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cracksObjects:
+  - {fileID: 1127693762535784353, guid: 526b8c4e38cba96499d6d8178819418f, type: 3}
+  - {fileID: 5242341024568591416, guid: 74ce04628ab38ee4086b1f41b5866ce7, type: 3}
+  - {fileID: 5748532578733634211, guid: e10deae7ebc18404f8ef68224bfb1591, type: 3}
+  - {fileID: 6975665234526663929, guid: c0163432b3f6f8d4e9410f1a9b467ca2, type: 3}
+  - {fileID: 4745197478202946111, guid: 507df90555846a64db6a5564daf1db4e, type: 3}
+  - {fileID: 7400640195841465373, guid: 035036c9c813fd84aa2443b5c389dd16, type: 3}
+  - {fileID: 1308429090816820828, guid: fd2f71040f2d2d94e8ab1f9d6ac4a017, type: 3}
+  - {fileID: 7535172734971277341, guid: a99f5980c122c2f42889bab4529dd454, type: 3}
+  - {fileID: 1074700066003168655, guid: 1c0f9a06bff18364aaefe764ba93ce79, type: 3}
+  - {fileID: 8414388396091612275, guid: 87c27b1a7b21826439c910776f834654, type: 3}
+  - {fileID: 4180249911244405874, guid: 46a7710385a66b842b8ae5d5b6e444c0, type: 3}
+  timeToSpawnCracks:
+    min: 0.2
+    max: 1.7
+  coinObject: {fileID: 2984263132341282181, guid: 5856742e4ab2ce44a91035cf5a2e53f3, type: 3}
+  timeToSpawnCoins:
+    min: 4
+    max: 10
+  fuelObject: {fileID: 5237893938151593220, guid: e8d9bc8f06daf46419c8ed600afc5a9c, type: 3}
+  timeToSpawnFuel: 8
+  catObject: {fileID: 4913205326048309580, guid: 1d55903ff80a3f042910714f0db457ba, type: 3}
+  xIntervalToSpawnCats: 8
+  timeToSpawnCats:
+    min: 5
+    max: 10
+  Road2x2Objects:
+  - {fileID: 9035126997244998996, guid: 1591d71d5991f1e4d82c112b702a283d, type: 3}
+  - {fileID: 6424583445605595374, guid: f85dac8cfa772f34480008b80dcd71da, type: 3}
+  - {fileID: 4302055893698529547, guid: 7e075442d2fdd0244a84b4da8686665a, type: 3}
+  Road3x3Objects:
+  - {fileID: 2170429840621014392, guid: 38f8cf7c067ef4641b46dccb08a0df7e, type: 3}
+  timeToSpawnRoadObjects:
+    min: 5
+    max: 10
+  deleteDistance: 100
+  deleteDelay: 3
 --- !u!1 &894330527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,8 +1469,8 @@ SceneRoots:
   - {fileID: 1823633744}
   - {fileID: 1764929388}
   - {fileID: 1246344848}
+  - {fileID: 544829850}
   - {fileID: 1938464520}
   - {fileID: 894330529}
   - {fileID: 1987264055}
   - {fileID: 1068282367}
-  - {fileID: 544829850}

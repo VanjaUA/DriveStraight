@@ -16,14 +16,17 @@ public class CatLogic : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
 
-        if (spriteRenderer.flipX == true)
+        if (transform.position.x > 0)
         {
-            moveDirection = Vector3.right;
+            spriteRenderer.flipX = false;
+            moveDirection = Vector3.left;
         }
         else
         {
-            moveDirection = Vector3.left;
+            spriteRenderer.flipX = true;
+            moveDirection = Vector3.right;
         }
+
     }
 
     private void Update()
