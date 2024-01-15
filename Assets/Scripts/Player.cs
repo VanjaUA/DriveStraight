@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     private const float MIN_MOVEMENT_SPEED = 1f;
 
+    private const string COIN_TAG = "Coin";
+    private const string FUEL_TAG = "Fuel";
+
     [SerializeField]
     private float maxMovementSpeed;
     [SerializeField]
@@ -59,6 +62,18 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag(COIN_TAG))
+        {
+            Debug.Log("Pick up coin");
+            collision.gameObject.SetActive(false);
+            return;
+        }
+        if (collision.gameObject.CompareTag(FUEL_TAG))
+        {
+            Debug.Log("Pick up fuel");
+            collision.gameObject.SetActive(false);
+            return;
+        }
         GameManager.instance.GameOver();
     }
 

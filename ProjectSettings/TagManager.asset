@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Coin
+  - Fuel
   layers:
   - Default
   - TransparentFX
@@ -46,4 +48,7 @@ TagManager:
     locked: 0
   - name: Units
     uniqueID: 3483795029
+    locked: 0
+  - name: Top
+    uniqueID: 238327443
     locked: 0
