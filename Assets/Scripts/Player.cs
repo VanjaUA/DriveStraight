@@ -62,18 +62,6 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(COIN_TAG))
-        {
-            Debug.Log("Pick up coin");
-            collision.gameObject.SetActive(false);
-            return;
-        }
-        if (collision.gameObject.CompareTag(FUEL_TAG))
-        {
-            Debug.Log("Pick up fuel");
-            collision.gameObject.SetActive(false);
-            return;
-        }
         GameManager.instance.GameOver();
     }
 
@@ -85,5 +73,21 @@ public class Player : MonoBehaviour
             return movePosition;
         }
         return new Vector3(0,movePosition.y);
+    }
+
+
+
+    public void PickObject(string objectTag) 
+    {
+        if (objectTag == COIN_TAG)
+        {
+            Debug.Log("Pick up coin");
+            return;
+        }
+        if (objectTag == FUEL_TAG)
+        {
+            Debug.Log("Pick up fuel");
+            return;
+        }
     }
 }

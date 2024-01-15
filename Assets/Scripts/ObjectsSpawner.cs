@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectsSpawner : MonoBehaviour
 {
+    [SerializeField] private MinMax<float> yIntervalToSpawn;
+
     [Header("Cracks")]
     [SerializeField] private GameObject[] cracksObjects;
     [SerializeField] private MinMax<float> timeToSpawnCracks;
@@ -57,7 +59,8 @@ public class ObjectsSpawner : MonoBehaviour
             yield return new WaitForSeconds(delay);
 
             Vector3 positionToSpawn = new Vector3(Random.Range(roadManager.CurrentRoad.lineXPositions[0],
-                roadManager.CurrentRoad.lineXPositions[roadManager.CurrentRoad.lineXPositions.Length - 1]),roadManager.LastYPosition);
+                roadManager.CurrentRoad.lineXPositions[roadManager.CurrentRoad.lineXPositions.Length - 1]),
+                roadManager.LastYPosition + Random.Range(yIntervalToSpawn.min,yIntervalToSpawn.max));
 
             GameObject objectToSpawn = cracksObjects[Random.Range(0, cracksObjects.Length)];
 
@@ -74,7 +77,8 @@ public class ObjectsSpawner : MonoBehaviour
             yield return new WaitForSeconds(delay);
 
             Vector3 positionToSpawn = new Vector3(Random.Range(roadManager.CurrentRoad.lineXPositions[0],
-                roadManager.CurrentRoad.lineXPositions[roadManager.CurrentRoad.lineXPositions.Length - 1]), roadManager.LastYPosition);
+                roadManager.CurrentRoad.lineXPositions[roadManager.CurrentRoad.lineXPositions.Length - 1]),
+                roadManager.LastYPosition + Random.Range(yIntervalToSpawn.min, yIntervalToSpawn.max));
 
             GameObject objectToSpawn = coinObject;
 
@@ -91,7 +95,8 @@ public class ObjectsSpawner : MonoBehaviour
             yield return new WaitForSeconds(delay);
 
             Vector3 positionToSpawn = new Vector3(Random.Range(roadManager.CurrentRoad.lineXPositions[0],
-                roadManager.CurrentRoad.lineXPositions[roadManager.CurrentRoad.lineXPositions.Length - 1]), roadManager.LastYPosition);
+                roadManager.CurrentRoad.lineXPositions[roadManager.CurrentRoad.lineXPositions.Length - 1]),
+                roadManager.LastYPosition + Random.Range(yIntervalToSpawn.min, yIntervalToSpawn.max));
 
             GameObject objectToSpawn = fuelObject;
 
@@ -107,7 +112,7 @@ public class ObjectsSpawner : MonoBehaviour
             float delay = Random.Range(timeToSpawnRoadObjects.min, timeToSpawnRoadObjects.max);
             yield return new WaitForSeconds(delay);
 
-            Vector3 positionToSpawn = new Vector3(0, roadManager.LastYPosition);
+            Vector3 positionToSpawn = new Vector3(0, roadManager.LastYPosition + Random.Range(yIntervalToSpawn.min, yIntervalToSpawn.max));
 
             GameObject objectToSpawn = null;
             if (roadManager.CurrentRoad.roadCode == RoadManager.RoadCode.Road3x3)
@@ -138,7 +143,8 @@ public class ObjectsSpawner : MonoBehaviour
             Vector3 positionToSpawn;
             if (Random.Range(0, 2) == 0)
             {
-                positionToSpawn = new Vector3(roadManager.CurrentRoad.lineXPositions[0] - xIntervalToSpawnCats, roadManager.LastYPosition);
+                positionToSpawn = new Vector3(roadManager.CurrentRoad.lineXPositions[0] - xIntervalToSpawnCats,
+                    roadManager.LastYPosition + Random.Range(yIntervalToSpawn.min, yIntervalToSpawn.max));
             }
             else
             {

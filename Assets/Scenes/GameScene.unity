@@ -377,11 +377,11 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1823633744}
+  m_Father: {fileID: 1657536202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -471,6 +471,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be601a68f16c2be47a91fb502b43d219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  yIntervalToSpawn:
+    min: -2
+    max: 6
   cracksObjects:
   - {fileID: 1127693762535784353, guid: 526b8c4e38cba96499d6d8178819418f, type: 3}
   - {fileID: 5242341024568591416, guid: 74ce04628ab38ee4086b1f41b5866ce7, type: 3}
@@ -488,8 +491,8 @@ MonoBehaviour:
     max: 1.7
   coinObject: {fileID: 2984263132341282181, guid: 5856742e4ab2ce44a91035cf5a2e53f3, type: 3}
   timeToSpawnCoins:
-    min: 4
-    max: 10
+    min: 2
+    max: 8
   fuelObject: {fileID: 5237893938151593220, guid: e8d9bc8f06daf46419c8ed600afc5a9c, type: 3}
   timeToSpawnFuel: 8
   catObject: {fileID: 4913205326048309580, guid: 1d55903ff80a3f042910714f0db457ba, type: 3}
@@ -812,6 +815,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1657536201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657536202}
+  - component: {fileID: 1657536203}
+  m_Layer: 0
+  m_Name: CameraHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1657536202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657536201}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 519420032}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1657536203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657536201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa10b630f477947419aa61c10ca95af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToFollow: {fileID: 0}
 --- !u!1 &1678237769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,7 +1158,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 519420032}
   - {fileID: 949008832}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1474,3 +1522,4 @@ SceneRoots:
   - {fileID: 894330529}
   - {fileID: 1987264055}
   - {fileID: 1068282367}
+  - {fileID: 1657536202}
