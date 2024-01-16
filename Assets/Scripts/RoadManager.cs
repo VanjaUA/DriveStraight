@@ -13,10 +13,9 @@ public class RoadManager : MonoBehaviour
     }
 
     private const float INTERVAL_BETWEEN_ROADS = 17f;
-    private const int INTERVAL_TO_CHANGE_ROAD_MIN = 5;
-    private const int INTERVAL_TO_CHANGE_ROAD_MAX = 8;
 
     [SerializeField] private RoadSO[] roads;
+    [SerializeField] private MinMax<int> intervalToChangeRoad;
 
     [SerializeField] private float startYPosition;
 
@@ -39,7 +38,7 @@ public class RoadManager : MonoBehaviour
 
         CurrentRoad = roads[0];
 
-        amountToChangeRoad = Random.Range(INTERVAL_TO_CHANGE_ROAD_MIN, INTERVAL_TO_CHANGE_ROAD_MAX + 1);
+        amountToChangeRoad = Random.Range(intervalToChangeRoad.min, intervalToChangeRoad.max + 1);
 
         LastYPosition = startYPosition;
         SpawnRoad(CurrentRoad.roadPrefab, LastYPosition);
@@ -84,11 +83,11 @@ public class RoadManager : MonoBehaviour
         switch (CurrentRoad.roadCode)
         {
             case RoadCode.Road2x2To3x3:
-                amountToChangeRoad = Random.Range(INTERVAL_TO_CHANGE_ROAD_MIN, INTERVAL_TO_CHANGE_ROAD_MAX + 1);
+                amountToChangeRoad = Random.Range(intervalToChangeRoad.min, intervalToChangeRoad.max + 1);
                 break;
 
             case RoadCode.Road3x3To2x2:
-                amountToChangeRoad = Random.Range(INTERVAL_TO_CHANGE_ROAD_MIN, INTERVAL_TO_CHANGE_ROAD_MAX + 1);
+                amountToChangeRoad = Random.Range(intervalToChangeRoad.min, intervalToChangeRoad.max + 1);
                 break;
         }
 

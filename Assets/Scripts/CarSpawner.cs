@@ -41,7 +41,7 @@ public class CarSpawner : MonoBehaviour
 
             if (CheckIfCanSpawnCar(positionToSpawn))
             {
-                newCar = Instantiate(carToSpawn, positionToSpawn, Quaternion.identity);
+                newCar = Instantiate(carToSpawn, positionToSpawn, Quaternion.identity,this.transform);
 
 
                 if (positionToSpawn.x > 0)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class Player : MonoBehaviour
     private GameObject stopSignals;
 
 
+    public EventHandler OnMovementSpeedChanged;
+
+
     private float movementSpeed;
 
     public float MovementSpeed
@@ -25,6 +29,8 @@ public class Player : MonoBehaviour
         private set 
         {
             movementSpeed = value;
+
+            OnMovementSpeedChanged?.Invoke(this,EventArgs.Empty);
 
             if (movementSpeed > maxMovementSpeed)
             {
@@ -89,5 +95,10 @@ public class Player : MonoBehaviour
             Debug.Log("Pick up fuel");
             return;
         }
+    }
+
+    public MinMax<float> GetMovementSpeedBounds() 
+    {
+        return new MinMax<float> {min = MIN_MOVEMENT_SPEED,max = maxMovementSpeed };
     }
 }
