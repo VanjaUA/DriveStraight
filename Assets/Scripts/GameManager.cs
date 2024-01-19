@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public CarSpawner carSpawner;
     [SerializeField] public RoadManager roadManager;
+    [SerializeField] public UIManager uiManager;
     [SerializeField] public Player player;
 
     private void Awake()

@@ -32,6 +32,7 @@ public class CameraLogic : MonoBehaviour
     private void Update()
     {
         MoveCamera();
+
     }
 
     private void MoveCamera() 

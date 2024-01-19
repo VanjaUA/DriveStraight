@@ -236,4 +236,9 @@ public class CarAI : MonoBehaviour
         }
     }
 
+    public void ModifyMaxMovementSpeed(float speedModifier) 
+    {
+        maxMovementSpeed *= speedModifier;
+    }
+
 }

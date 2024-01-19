@@ -4,6 +4,8 @@ using System.Linq;
 
 public class CarSpawner : MonoBehaviour
 {
+    [SerializeField] private float oncomingCarSpeedModifier;
+
     [SerializeField] private GameObject[] carsToSpawn;
 
     [SerializeField] private LayerMask carsLayer;
@@ -52,6 +54,7 @@ public class CarSpawner : MonoBehaviour
                 {
                     //against the movement
                     newCar.transform.localEulerAngles = new Vector3(0, 0, 180f);
+                    newCar.GetComponent<CarAI>().ModifyMaxMovementSpeed(oncomingCarSpeedModifier);
                 }
             }
         }
