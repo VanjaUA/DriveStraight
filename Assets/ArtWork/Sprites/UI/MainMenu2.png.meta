@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MainMenu2_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 322
+        width: 125
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04f62c4fc4b94d94e8945647ca3760b3
+      internalID: -805960122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu2_4
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 245
+        width: 198
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 458f2c17d44bb6f42bd56cf0ef7b35f1
+      internalID: -327834651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu2_5
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 146
+        width: 176
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abb39eb71b88c1847b135348a70f26ed
+      internalID: 260307690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +208,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MainMenu2_0: -268800381
+      MainMenu2_1: 1271987334
+      MainMenu2_2: -287385112
+      MainMenu2_3: -805960122
+      MainMenu2_4: -327834651
+      MainMenu2_5: 260307690
+      MainMenu2_6: 1531601892
+      MainMenu2_7: -1670253050
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

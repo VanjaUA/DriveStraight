@@ -38,13 +38,12 @@ public class Player : MonoBehaviour
     }
 
 
-
     private int coinsTaken;
 
     public int CoinsTaken
     {
         get { return coinsTaken; }
-        private set 
+        private set
         {
             coinsTaken = value;
             GameManager.instance.uiManager.UpdateCoinsText(CoinsTaken);

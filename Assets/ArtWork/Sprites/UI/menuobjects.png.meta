@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: menuobjects_19
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 128
+        width: 67
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617236f61e2a5b042a905f51faed4f96
+      internalID: -366063182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +166,28 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      menuobjects_0: -747181853
+      menuobjects_1: 758758594
+      menuobjects_10: 1502823840
+      menuobjects_11: -1385761984
+      menuobjects_12: -932111818
+      menuobjects_13: 924774240
+      menuobjects_14: -1875266965
+      menuobjects_15: -1335320189
+      menuobjects_16: 1651782221
+      menuobjects_17: 1097216741
+      menuobjects_18: -839958260
+      menuobjects_19: -366063182
+      menuobjects_2: -1844675933
+      menuobjects_20: -1829767537
+      menuobjects_3: -1221071269
+      menuobjects_4: 1516876289
+      menuobjects_5: 1324196499
+      menuobjects_6: -912972464
+      menuobjects_7: 15969563
+      menuobjects_8: 972201020
+      menuobjects_9: 1215348479
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
