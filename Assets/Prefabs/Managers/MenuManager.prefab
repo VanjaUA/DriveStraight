@@ -47,6 +47,10 @@ MonoBehaviour:
   soundManager: {fileID: 0}
   mainWindow: {fileID: 0}
   settingsWindow: {fileID: 0}
+  garageWindow: {fileID: 0}
   soundToggle: {fileID: 0}
   soundOnSprite: {fileID: 1429895726, guid: ca2591a56cdafd94eb3697916e32533d, type: 3}
   soundOffSprite: {fileID: -1021128249, guid: ca2591a56cdafd94eb3697916e32533d, type: 3}
+  mainMenuMusic:
+  - audioClip: {fileID: 8300000, guid: ac5d90e5650b53c498beb31d7bd6165d, type: 3}
+    volume: 0.3

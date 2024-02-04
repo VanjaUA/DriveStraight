@@ -19,11 +19,16 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Sprite soundOnSprite;
     [SerializeField] private Sprite soundOffSprite;
 
+    [Header("Music")]
+    [SerializeField] SoundManager.Sound[] mainMenuMusic;
+
     private void Start()
     {
         mainWindow.SetActive(true);
         settingsWindow.SetActive(false);
         garageWindow.SetActive(false);
+
+        SoundManager.instance.PlayMusic(mainMenuMusic);
     }
 
     public void StartGame() 

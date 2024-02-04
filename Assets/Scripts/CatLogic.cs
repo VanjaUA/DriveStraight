@@ -6,6 +6,8 @@ public class CatLogic : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
 
+    [SerializeField] private SoundManager.Sound dieSound;
+
     private SpriteRenderer spriteRenderer;
     private Animator animator;
 
@@ -36,6 +38,8 @@ public class CatLogic : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        SoundManager.instance.PlaySound(dieSound);
+
         animator.SetTrigger(DIE_TRIGGER_NAME);
         Destroy(this);
     }

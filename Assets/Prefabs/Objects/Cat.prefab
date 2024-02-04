@@ -92,6 +92,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.2
+  dieSound:
+    audioClip: {fileID: 8300000, guid: 8d7d9c96f16ec4e48bb83d04c8ac8cd3, type: 3}
+    volume: 0.4
 --- !u!1 &8211815059220916394
 GameObject:
   m_ObjectHideFlags: 0

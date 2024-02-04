@@ -320,6 +320,9 @@ MonoBehaviour:
   stopSignals: {fileID: 5390956382740117457}
   rightSignal: {fileID: 7297359560509978728}
   leftSignal: {fileID: 8948080899504637805}
+  hornSound:
+    audioClip: {fileID: 8300000, guid: 63a439bbc61974941b4522afd5db65a7, type: 3}
+    volume: 1
 --- !u!61 &2339682602248174571
 BoxCollider2D:
   m_ObjectHideFlags: 0

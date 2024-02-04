@@ -15,6 +15,14 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject stopSignals;
 
+    [SerializeField] private SoundManager.Sound coinPickUpSound;
+    [SerializeField] private SoundManager.Sound crashSound;
+
+    [SerializeField] private SoundManager.Sound carEngineSound;
+    private AudioSource carAudio;
+
+    private Coroutine engineSoundCoroutine;
+
     private float currentFuel;
 
     public float CurrentFuel
@@ -95,6 +103,10 @@ public class Player : MonoBehaviour
         CoinsTaken = 0;
 
         CurrentFuel = maxFuelCapacity;
+
+        carAudio = GetComponent<AudioSource>();
+
+        engineSoundCoroutine = StartCoroutine(PlayEngineSound(carEngineSound));
     }
 
     private void Update()
@@ -111,12 +123,26 @@ public class Player : MonoBehaviour
         {
             CurrentFuel += maxFuelCapacity / 5f;
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            CurrentFuel -= maxFuelCapacity / 5f;
+        }
     }
 
     private void Move(Vector2 inputVector)
     {
         if (CurrentFuel <= 0)
         {
+            if (engineSoundCoroutine != null)
+            {
+                StopCoroutine(engineSoundCoroutine);
+                engineSoundCoroutine = null;
+
+                carAudio.Stop();
+            }
+
+
             stopSignals.SetActive(true);
 
             MovementSpeed -=  Time.deltaTime * maxMovementSpeed / 10f /*<-- slowing down speed */;
@@ -130,8 +156,16 @@ public class Player : MonoBehaviour
             {
                 GameManager.instance.GameOver();
             }
+
+
             return;
         }
+
+        if (engineSoundCoroutine == null)
+        {
+            engineSoundCoroutine = StartCoroutine(PlayEngineSound(carEngineSound));
+        }
+
 
         MovementSpeed += inputVector.y * Time.deltaTime * maxMovementSpeed / 2 /*<-- acceleration speed */;
         if (inputVector.y < 0)
@@ -154,6 +188,16 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (engineSoundCoroutine != null)
+        {
+            StopCoroutine(engineSoundCoroutine);
+            engineSoundCoroutine = null;
+
+            carAudio.Stop();
+        }
+
+        SoundManager.instance.PlaySound(crashSound);
+
         GameManager.instance.GameOver();
     }
 
@@ -167,6 +211,15 @@ public class Player : MonoBehaviour
         return new Vector3(0,movePosition.y);
     }
 
+    private IEnumerator PlayEngineSound(SoundManager.Sound engineSound) 
+    {
+        while (true)
+        {
+            carAudio.PlayOneShot(engineSound.audioClip, engineSound.volume);
+            yield return new WaitForSeconds(engineSound.audioClip.length);
+        }
+    }
+
 
 
     public void PickObject(PickableObject.ObjectType objectType) 
@@ -176,6 +229,7 @@ public class Player : MonoBehaviour
         {
             case PickableObject.ObjectType.Coin:
                 CoinsTaken++;
+                SoundManager.instance.PlaySound(coinPickUpSound);
                 break;
             case PickableObject.ObjectType.Fuel:
                 CurrentFuel += maxFuelCapacity / 5f; //Change in future

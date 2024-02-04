@@ -15,6 +15,7 @@ public class CarAI : MonoBehaviour
     [SerializeField] private GameObject rightSignal;
     [SerializeField] private GameObject leftSignal;
 
+
     private float movementSpeed;
 
     public float MovementSpeed
@@ -140,6 +141,7 @@ public class CarAI : MonoBehaviour
         if (Physics2D.Raycast(transform.position, transform.up, MovementSpeed, blockingLayer))
         {
             // Have something in front
+
             haveObstacleInFront = true;
             if (switchingLine == false)
             {

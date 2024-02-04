@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6815767333372376360}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48,3 +48,10 @@ MonoBehaviour:
   roadManager: {fileID: 0}
   uiManager: {fileID: 0}
   player: {fileID: 0}
+  gameMusic:
+  - audioClip: {fileID: 8300000, guid: 1afa80937a27b8c4aab4cceb07e138fd, type: 3}
+    volume: 0.3
+  - audioClip: {fileID: 8300000, guid: 03c2b7fe0e18e4a45be969b440714235, type: 3}
+    volume: 0.3
+  - audioClip: {fileID: 8300000, guid: bbd7b35cb5ffd1e45b0ae8d87905cd4c, type: 3}
+    volume: 0.3

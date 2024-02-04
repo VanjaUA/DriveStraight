@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public UIManager uiManager;
     [SerializeField] public Player player;
 
+    [Header("Music")]
+    [SerializeField] SoundManager.Sound[] gameMusic;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -41,6 +44,12 @@ public class GameManager : MonoBehaviour
 
 
         Time.timeScale = 1f;
+
+    }
+
+    private void Start()
+    {
+        SoundManager.instance.PlayMusic(gameMusic);
     }
 
 
