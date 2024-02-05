@@ -29,10 +29,17 @@ public class UIManager : MonoBehaviour
         loseUI.SetActive(false);
     }
 
+#if PLATFORM_ANDROID
     private void Update()
     {
         inputVector.x = SimpleInput.GetAxis("Horizontal");
     }
+#elif UNITY_EDITOR
+    private void Update()
+    {
+        inputVector.x = SimpleInput.GetAxis("Horizontal");
+    }
+#endif
 
     public void UpdateCoinsText(int newAmount) 
     {

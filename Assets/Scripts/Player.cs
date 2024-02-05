@@ -161,11 +161,6 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (engineSoundCoroutine == null)
-        {
-            engineSoundCoroutine = StartCoroutine(PlayEngineSound(carEngineSound));
-        }
-
 
         MovementSpeed += inputVector.y * Time.deltaTime * maxMovementSpeed / 2 /*<-- acceleration speed */;
         if (inputVector.y < 0)
@@ -233,6 +228,10 @@ public class Player : MonoBehaviour
                 break;
             case PickableObject.ObjectType.Fuel:
                 CurrentFuel += maxFuelCapacity / 5f; //Change in future
+                if (engineSoundCoroutine == null)
+                {
+                    engineSoundCoroutine = StartCoroutine(PlayEngineSound(carEngineSound));
+                }
                 break;
         }
     }
