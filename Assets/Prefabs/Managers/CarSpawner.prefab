@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4136034284927355003}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46,8 +46,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oncomingCarSpeedModifier: 0.8
   carsToSpawn:
+  - {fileID: 883126334658402152, guid: 5437ee508f28ab845a3f28be96d58853, type: 3}
   - {fileID: 6632818542366682179, guid: 6ac5b9eb769372f4a95fbb3c755c6ae4, type: 3}
+  - {fileID: 5550195252379779714, guid: 11f9c5ad682ee3e4da03311cfc65c38c, type: 3}
+  - {fileID: 298108673599114335, guid: c323de40844fb5c49aae20468fa66cf6, type: 3}
+  - {fileID: 8762621272220120934, guid: e3ff47f4a74a0a7469b8d6370588f716, type: 3}
+  - {fileID: 4015574855792699694, guid: 095081a6504afb64a889fb8d288bfa2b, type: 3}
   - {fileID: 7517950978606472270, guid: 3ea1f911efdcd1e4ebc0d121c82766ad, type: 3}
+  - {fileID: 6012746450814766098, guid: f64b48af53ddda34683fe46b32867c8d, type: 3}
+  - {fileID: 3069101469641220682, guid: 2467d0b9aa7d68e4489e542c8ace4416, type: 3}
+  - {fileID: 8003763907386707219, guid: 05c3e399dae47624b868e4b7bc0742b2, type: 3}
+  - {fileID: 7678719377832084297, guid: 9f2f4d4b03004974d83ed0ea55ad2bc7, type: 3}
+  - {fileID: 4106583023784395912, guid: 3c6558ecc0b4ebb439f0aabd12dfb283, type: 3}
+  - {fileID: 8707694695241693839, guid: da95d574f6e3b9549a4088bcf27feb91, type: 3}
+  - {fileID: 8496943248327857779, guid: ea0eb48a1c416994793b1a0e49cc0d83, type: 3}
+  - {fileID: 2923844277667200834, guid: 1376ed2801aaf9740865ccca306b1b69, type: 3}
+  - {fileID: 5675458082888249080, guid: a35f91bae8bf4ad41bb31ecf20400a51, type: 3}
   carsLayer:
     serializedVersion: 2
     m_Bits: 1

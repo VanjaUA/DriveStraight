@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public UIManager uiManager;
     [SerializeField] public Player player;
 
+
     [Header("Music")]
     [SerializeField] SoundManager.Sound[] gameMusic;
 

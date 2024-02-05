@@ -29,6 +29,11 @@ public class UIManager : MonoBehaviour
         loseUI.SetActive(false);
     }
 
+    private void Update()
+    {
+        inputVector.x = SimpleInput.GetAxis("Horizontal");
+    }
+
     public void UpdateCoinsText(int newAmount) 
     {
         coinsText.text = newAmount.ToString();

@@ -477,16 +477,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfcb11a7f44d2a64aa668ab44767a8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMovementSpeed: 4
+  maxMovementSpeed: 4.5
   blockingLayer:
     serializedVersion: 2
     m_Bits: 65
   stopSignals: {fileID: 909306355836720820}
   rightSignal: {fileID: 8055241939556358305}
   leftSignal: {fileID: 995281091902244640}
-  hornSound:
-    audioClip: {fileID: 8300000, guid: 63a439bbc61974941b4522afd5db65a7, type: 3}
-    volume: 1
 --- !u!50 &1225975804117729838
 Rigidbody2D:
   serializedVersion: 4
