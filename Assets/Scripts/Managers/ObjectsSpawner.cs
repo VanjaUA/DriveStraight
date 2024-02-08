@@ -164,7 +164,7 @@ public class ObjectsSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(deleteDelay);
 
-        float playerYPosition = GameManager.instance.player.transform.position.y;
+        float playerYPosition = GameManager.instance.Player.transform.position.y;
 
         for (int i = 0; i < objectsOnScene.Count; i++)
         {

@@ -51,6 +51,15 @@ MonoBehaviour:
   soundToggle: {fileID: 0}
   soundOnSprite: {fileID: 1429895726, guid: ca2591a56cdafd94eb3697916e32533d, type: 3}
   soundOffSprite: {fileID: -1021128249, guid: ca2591a56cdafd94eb3697916e32533d, type: 3}
+  carImages:
+  - {fileID: 11400000, guid: 656b9aed473be3e40b9681ee9195c010, type: 2}
+  - {fileID: 11400000, guid: e1587048b0781c34baeda4e5befdb707, type: 2}
+  - {fileID: 11400000, guid: 3ca97bf53053aa04bad8d868c8751b90, type: 2}
+  - {fileID: 11400000, guid: ec6e9342f8e5ca347b57d39770ea5f1b, type: 2}
+  - {fileID: 11400000, guid: 50b29b570d40c6345bf28fc1978e944e, type: 2}
+  - {fileID: 11400000, guid: d91dea2e024cf54479558a988b9be2eb, type: 2}
+  - {fileID: 11400000, guid: 25844f455950c6943bbcff2b5ea9bbf0, type: 2}
+  - {fileID: 11400000, guid: cbb2d0ddfa34eca4e9b585bcdd9a293c, type: 2}
   mainMenuMusic:
   - audioClip: {fileID: 8300000, guid: ac5d90e5650b53c498beb31d7bd6165d, type: 3}
     volume: 0.3

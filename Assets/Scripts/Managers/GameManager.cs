@@ -16,6 +16,8 @@ public enum Direction
 
 public class GameManager : MonoBehaviour
 {
+    public const string EQUIPPED_CAR = "EquippedCar";
+    public const string COINS_COUNT = "CoinsCount";
 
     private const int GAME_SCENE_INDEX = 1;
     private const int MAIN_MENU_INDEX = 0;
@@ -25,7 +27,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public CarSpawner carSpawner;
     [SerializeField] public RoadManager roadManager;
     [SerializeField] public UIManager uiManager;
-    [SerializeField] public Player player;
+
+    [SerializeField] private PlayerCarSO[] playerCars;
+    public Player Player { get; private set; }
 
 
     [Header("Music")]
@@ -50,6 +54,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        int selectedCarIndex = PlayerPrefs.GetInt(EQUIPPED_CAR,0);
+        Player = Instantiate(playerCars[selectedCarIndex].carObject,Vector3.zero,Quaternion.identity).GetComponent<Player>();
+
         SoundManager.instance.PlayMusic(gameMusic);
     }
 
@@ -68,7 +75,13 @@ public class GameManager : MonoBehaviour
 
     public void GameOver() 
     {
-        uiManager.UpdateTotalCoinsText(player.CoinsTaken);
+        uiManager.UpdateTotalCoinsText(Player.CoinsTaken);
+
+        int oldCoinsCount = PlayerPrefs.GetInt(COINS_COUNT,0);
+        Debug.Log(oldCoinsCount);
+        int newCoinsCount = oldCoinsCount + Player.CoinsTaken;
+        Debug.Log(newCoinsCount);
+        PlayerPrefs.SetInt(COINS_COUNT,newCoinsCount);
 
         Time.timeScale = 0f;
         uiManager.ActivateLoseScreen();

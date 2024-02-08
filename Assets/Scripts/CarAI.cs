@@ -47,7 +47,7 @@ public class CarAI : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.instance.player;
+        player = GameManager.instance.Player;
         rb2D = GetComponent<Rigidbody2D>();
         carCollider = GetComponent<BoxCollider2D>();
 

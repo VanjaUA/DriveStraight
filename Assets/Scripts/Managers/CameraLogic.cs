@@ -19,11 +19,11 @@ public class CameraLogic : MonoBehaviour
     {
         mainCamera = GetComponentInChildren<Camera>();
 
-        objectToFollow = GameManager.instance.player.transform;
+        objectToFollow = GameManager.instance.Player.transform;
 
-        player = GameManager.instance.player;
+        player = GameManager.instance.Player;
 
-        GameManager.instance.player.OnMovementSpeedChanged += Camera_OnMovementSpeedChanged;
+        GameManager.instance.Player.OnMovementSpeedChanged += Camera_OnMovementSpeedChanged;
 
         cameraYOffset = cameraYOffsetBounds.min;
 

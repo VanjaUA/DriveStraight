@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
 
     private Coroutine engineSoundCoroutine;
 
+    private bool isDead = false;
+
     private float currentFuel;
 
     public float CurrentFuel
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour
     {
         MovementSpeed = MIN_MOVEMENT_SPEED;
 
+        isDead = false;
 
         CoinsTaken = 0;
 
@@ -107,10 +110,16 @@ public class Player : MonoBehaviour
         carAudio = GetComponent<AudioSource>();
 
         engineSoundCoroutine = StartCoroutine(PlayEngineSound(carEngineSound));
+
     }
 
     private void Update()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         //Vector2 inputVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         Vector2 inputVector = GameManager.instance.uiManager.GetInputVector();
@@ -154,7 +163,7 @@ public class Player : MonoBehaviour
 
             if (MovementSpeed <= 0)
             {
-                GameManager.instance.GameOver();
+                GameOver();
             }
 
 
@@ -172,7 +181,7 @@ public class Player : MonoBehaviour
             stopSignals.SetActive(false);
         }
 
-        CurrentFuel -= MovementSpeed / 100f; /*<-- how much fuel you use */
+        CurrentFuel -= (MovementSpeed / maxMovementSpeed)/100f; /*<-- how much fuel you use */
     }
 
     private void Slide(Vector2 inputVector) 
@@ -193,7 +202,7 @@ public class Player : MonoBehaviour
 
         SoundManager.instance.PlaySound(crashSound);
 
-        GameManager.instance.GameOver();
+        GameOver();
     }
 
 
@@ -213,6 +222,13 @@ public class Player : MonoBehaviour
             carAudio.PlayOneShot(engineSound.audioClip, engineSound.volume);
             yield return new WaitForSeconds(engineSound.audioClip.length);
         }
+    }
+
+    private void GameOver() 
+    {
+        isDead = true;
+
+        GameManager.instance.GameOver();
     }
 
 

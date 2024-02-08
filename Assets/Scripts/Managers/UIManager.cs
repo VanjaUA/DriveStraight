@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI totalCoinsText;
 
+
+    [SerializeField] private Sprite LeftButton;
+
     private Vector2 inputVector;
 
     private void Start()
@@ -29,21 +32,16 @@ public class UIManager : MonoBehaviour
         loseUI.SetActive(false);
     }
 
-#if PLATFORM_ANDROID
     private void Update()
     {
         inputVector.x = SimpleInput.GetAxis("Horizontal");
     }
-#elif UNITY_EDITOR
-    private void Update()
-    {
-        inputVector.x = SimpleInput.GetAxis("Horizontal");
-    }
-#endif
 
     public void UpdateCoinsText(int newAmount) 
     {
         coinsText.text = newAmount.ToString();
+
+        
     }
 
     public void UpdateTotalCoinsText(int newAmount)
@@ -90,4 +88,6 @@ public class UIManager : MonoBehaviour
     {
         GameManager.instance.LoadMenu();
     }
+
+    
 }

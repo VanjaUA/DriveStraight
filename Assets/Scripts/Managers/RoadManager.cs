@@ -34,7 +34,7 @@ public class RoadManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.instance.player;
+        player = GameManager.instance.Player;
 
         CurrentRoad = roads[0];
 

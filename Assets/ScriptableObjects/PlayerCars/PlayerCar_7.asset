@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9757d78c35d63cf41ac224f126c7062f, type: 3}
+  m_Name: PlayerCar_7
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 4476465817816bb43840ed750c2aa148, type: 3}
+  cost: 100
+  boughtByPlayer: 0
+  carObject: {fileID: 6799441517283876985, guid: f1ea2ee110d590e4abc5b4bf7c588cf7, type: 3}
