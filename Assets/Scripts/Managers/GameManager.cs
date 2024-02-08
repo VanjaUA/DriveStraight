@@ -50,13 +50,13 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1f;
 
+
+        int selectedCarIndex = PlayerPrefs.GetInt(EQUIPPED_CAR, 0);
+        Player = Instantiate(playerCars[selectedCarIndex].carObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();
     }
 
     private void Start()
     {
-        int selectedCarIndex = PlayerPrefs.GetInt(EQUIPPED_CAR,0);
-        Player = Instantiate(playerCars[selectedCarIndex].carObject,Vector3.zero,Quaternion.identity).GetComponent<Player>();
-
         SoundManager.instance.PlayMusic(gameMusic);
     }
 

@@ -37,6 +37,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+
         mainWindow.SetActive(true);
         settingsWindow.SetActive(false);
         garageWindow.SetActive(false);
@@ -179,8 +180,6 @@ public class MenuManager : MonoBehaviour
 
     public void Quit()
     {
-        PlayerPrefs.SetInt(GameManager.COINS_COUNT,400);
-
         Debug.Log("Quit");
         Application.Quit();
     }

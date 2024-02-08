@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        inputVector.x = SimpleInput.GetAxis("Horizontal");
+        //inputVector.x = SimpleInput.GetAxis("Horizontal");
     }
 
     public void UpdateCoinsText(int newAmount) 
