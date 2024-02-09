@@ -2469,10 +2469,10 @@ MonoBehaviour:
   objectToFollow: {fileID: 0}
   cameraFOVBounds:
     min: 4
-    max: 5.75
+    max: 6
   cameraYOffsetBounds:
     min: 1
-    max: 5
+    max: 5.5
   cameraXBounds:
     min: -0.75
     max: 0.75

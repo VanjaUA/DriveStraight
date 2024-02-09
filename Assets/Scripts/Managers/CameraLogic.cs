@@ -57,7 +57,7 @@ public class CameraLogic : MonoBehaviour
         float interpolationValue = 0.2f;
 
         float deltaFOVBounds = cameraFOVBounds.max - cameraFOVBounds.min;
-        float deltaPlayerSpeed = player.GetMovementSpeedBounds().max - player.GetMovementSpeedBounds().min;
+        float deltaPlayerSpeed = GameManager.instance.GetFastestCarMaxSpeed() - player.GetMovementSpeedBounds().min;
         float ratio = deltaFOVBounds / deltaPlayerSpeed;
 
         float newCameraFOV = cameraFOVBounds.min + ((player.MovementSpeed - player.GetMovementSpeedBounds().min) * ratio);
@@ -70,7 +70,7 @@ public class CameraLogic : MonoBehaviour
         float interpolationValue = 0.2f;
 
         float deltaYOffsetBounds = cameraYOffsetBounds.max - cameraYOffsetBounds.min;
-        float deltaPlayerSpeed = player.GetMovementSpeedBounds().max - player.GetMovementSpeedBounds().min;
+        float deltaPlayerSpeed = GameManager.instance.GetFastestCarMaxSpeed() - player.GetMovementSpeedBounds().min;
         float ratio = deltaYOffsetBounds / deltaPlayerSpeed;
 
         float newCameraYOffset = cameraYOffsetBounds.min + ((player.MovementSpeed - player.GetMovementSpeedBounds().min) * ratio);

@@ -94,4 +94,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(GAME_SCENE_INDEX);
     }
+
+    public float GetFastestCarMaxSpeed() 
+    {
+        return playerCars[playerCars.Length - 1].carObject.GetComponent<Player>().GetMovementSpeedBounds().max;
+    }
 }

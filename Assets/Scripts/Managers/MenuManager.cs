@@ -40,6 +40,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        //PlayerPrefs.DeleteAll();
 
         mainWindow.SetActive(true);
         settingsWindow.SetActive(false);
@@ -206,7 +207,6 @@ public class MenuManager : MonoBehaviour
     {
         SoundManager.instance.PlaySound(clickButtonSound);
 
-        PlayerPrefs.SetInt(GameManager.COINS_COUNT, 100);
         Debug.Log("Quit");
         Application.Quit();
     }

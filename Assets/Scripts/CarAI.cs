@@ -95,7 +95,7 @@ public class CarAI : MonoBehaviour
     private IEnumerator SwitchLineCoroutine(float newXPosition) 
     {
         float timeToSwithLine = 3f;
-        float delayToSwitchLine = 1.5f;
+        float delayToSwitchLine = 1f;
         float timer = timeToSwithLine;
 
         switchingLine = true;
