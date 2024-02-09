@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject stopSignals;
 
+    private BoxCollider2D carCollider;
+
     [SerializeField] private SoundManager.Sound coinPickUpSound;
     [SerializeField] private SoundManager.Sound crashSound;
 
@@ -111,6 +113,8 @@ public class Player : MonoBehaviour
 
         engineSoundCoroutine = StartCoroutine(PlayEngineSound(carEngineSound));
 
+        carCollider = GetComponent<BoxCollider2D>();
+
     }
 
     private void Update()
@@ -126,17 +130,6 @@ public class Player : MonoBehaviour
 
         Move(inputVector);
         Slide(inputVector);
-
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            CurrentFuel += maxFuelCapacity / 5f;
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            CurrentFuel -= maxFuelCapacity / 5f;
-        }
     }
 
     private void Move(Vector2 inputVector)
@@ -181,7 +174,7 @@ public class Player : MonoBehaviour
             stopSignals.SetActive(false);
         }
 
-        CurrentFuel -= (MovementSpeed / maxMovementSpeed)/100f; /*<-- how much fuel you use */
+        CurrentFuel -= ((MovementSpeed / maxMovementSpeed) * Time.deltaTime) * 10f; /*<-- how much fuel you use */
     }
 
     private void Slide(Vector2 inputVector) 
@@ -208,7 +201,8 @@ public class Player : MonoBehaviour
 
     private Vector3 TryToMove(Vector3 movePosition) 
     {
-        if (!Physics2D.Raycast(transform.position,new Vector2(movePosition.x,0),0.25f,roadLayerMask)) //if player can slide to side
+
+        if (Physics2D.OverlapBox((Vector2)transform.position + (Vector2)movePosition + carCollider.offset,carCollider.size,0f,roadLayerMask) == false)
         {
             return movePosition;
         }
@@ -243,7 +237,7 @@ public class Player : MonoBehaviour
                 SoundManager.instance.PlaySound(coinPickUpSound);
                 break;
             case PickableObject.ObjectType.Fuel:
-                CurrentFuel += maxFuelCapacity / 5f; //Change in future
+                CurrentFuel += maxFuelCapacity / 3f; //Change in future
                 if (engineSoundCoroutine == null)
                 {
                     engineSoundCoroutine = StartCoroutine(PlayEngineSound(carEngineSound));

@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     [Header("Music")]
     [SerializeField] SoundManager.Sound[] gameMusic;
 
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -46,10 +47,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
-
-
         Time.timeScale = 1f;
-
 
         int selectedCarIndex = PlayerPrefs.GetInt(EQUIPPED_CAR, 0);
         Player = Instantiate(playerCars[selectedCarIndex].carObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();

@@ -95,23 +95,26 @@ public class CarAI : MonoBehaviour
     private IEnumerator SwitchLineCoroutine(float newXPosition) 
     {
         float timeToSwithLine = 3f;
+        float delayToSwitchLine = 1.5f;
         float timer = timeToSwithLine;
 
         switchingLine = true;
 
-        Coroutine blinkMethod;
+        Coroutine blinkCoroutine;
         GameObject blinkObject;
 
         if (Mathf.Abs(newXPosition) - Mathf.Abs(transform.position.x) > 0)
         {
-            blinkMethod = StartCoroutine(BlinkCoroutine(rightSignal));
+            blinkCoroutine = StartCoroutine(BlinkCoroutine(rightSignal));
             blinkObject = rightSignal;
         }
         else
         {
-            blinkMethod = StartCoroutine(BlinkCoroutine(leftSignal));
+            blinkCoroutine = StartCoroutine(BlinkCoroutine(leftSignal));
             blinkObject = leftSignal;
         }
+
+        yield return new WaitForSeconds(delayToSwitchLine);
 
 
         while (timer > 0)
@@ -129,7 +132,7 @@ public class CarAI : MonoBehaviour
             }
         }
 
-        StopCoroutine(blinkMethod);
+        StopCoroutine(blinkCoroutine);
         blinkObject.SetActive(false);
         switchingLine = false;
     }
