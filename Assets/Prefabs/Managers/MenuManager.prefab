@@ -70,8 +70,11 @@ MonoBehaviour:
   - audioClip: {fileID: 8300000, guid: ac5d90e5650b53c498beb31d7bd6165d, type: 3}
     volume: 0.3
   clickButtonSound:
-    audioClip: {fileID: 8300000, guid: 3f6d8d533f66e934d8f4d107d586a07e, type: 3}
+    audioClip: {fileID: 8300000, guid: 3a5801331719e1846aa271ee2190ecb1, type: 3}
     volume: 1
   buyButtonSound:
     audioClip: {fileID: 8300000, guid: d62e672a71a0cff4d8b2fbdac7fc0137, type: 3}
     volume: 0.9
+  errorSound:
+    audioClip: {fileID: 8300000, guid: f7772979f004012499eed629c53d9005, type: 3}
+    volume: 1

@@ -36,6 +36,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] SoundManager.Sound[] mainMenuMusic;
     [SerializeField] SoundManager.Sound clickButtonSound;
     [SerializeField] SoundManager.Sound buyButtonSound;
+    [SerializeField] SoundManager.Sound errorSound;
 
     private void Start()
     {
@@ -162,6 +163,10 @@ public class MenuManager : MonoBehaviour
             PlayerPrefs.SetInt(GameManager.EQUIPPED_CAR, selectedCarIndex);
 
             SoundManager.instance.PlaySound(buyButtonSound);
+        }
+        else
+        {
+            SoundManager.instance.PlaySound(errorSound);
         }
 
         UpdateGarageImage();

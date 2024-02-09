@@ -54,14 +54,14 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator PlayMusicOnLoop(Sound[] listOfMusic) 
     {
-        int index = 0;
+        int index = Random.Range(0,listOfMusic.Length);
         float musicDuration;
 
         while (true)
         {
-            musicDuration = listOfMusic[0].audioClip.length;
+            musicDuration = listOfMusic[index].audioClip.length;
 
-            PlaySound(listOfMusic[0]);
+            PlaySound(listOfMusic[index]);
 
             yield return new WaitForSeconds(musicDuration);
 
