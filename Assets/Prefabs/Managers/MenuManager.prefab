@@ -48,6 +48,7 @@ MonoBehaviour:
   mainWindow: {fileID: 0}
   settingsWindow: {fileID: 0}
   garageWindow: {fileID: 0}
+  mainCoinText: {fileID: 0}
   soundToggle: {fileID: 0}
   soundOnSprite: {fileID: 1429895726, guid: ca2591a56cdafd94eb3697916e32533d, type: 3}
   soundOffSprite: {fileID: -1021128249, guid: ca2591a56cdafd94eb3697916e32533d, type: 3}
@@ -60,6 +61,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d91dea2e024cf54479558a988b9be2eb, type: 2}
   - {fileID: 11400000, guid: 25844f455950c6943bbcff2b5ea9bbf0, type: 2}
   - {fileID: 11400000, guid: cbb2d0ddfa34eca4e9b585bcdd9a293c, type: 2}
+  garageCarImage: {fileID: 0}
+  garageCarCostText: {fileID: 0}
+  equipButton: {fileID: 0}
+  buyButton: {fileID: 0}
+  garageCoinText: {fileID: 0}
   mainMenuMusic:
   - audioClip: {fileID: 8300000, guid: ac5d90e5650b53c498beb31d7bd6165d, type: 3}
     volume: 0.3
+  clickButtonSound:
+    audioClip: {fileID: 8300000, guid: 3f6d8d533f66e934d8f4d107d586a07e, type: 3}
+    volume: 1
+  buyButtonSound:
+    audioClip: {fileID: 8300000, guid: d62e672a71a0cff4d8b2fbdac7fc0137, type: 3}
+    volume: 0.9

@@ -18,8 +18,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalCoinsText;
 
 
-    [SerializeField] private Sprite LeftButton;
-
     private Vector2 inputVector;
 
     private void Start()

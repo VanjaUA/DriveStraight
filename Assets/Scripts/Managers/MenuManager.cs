@@ -34,6 +34,8 @@ public class MenuManager : MonoBehaviour
 
     [Header("Music")]
     [SerializeField] SoundManager.Sound[] mainMenuMusic;
+    [SerializeField] SoundManager.Sound clickButtonSound;
+    [SerializeField] SoundManager.Sound buyButtonSound;
 
     private void Start()
     {
@@ -98,6 +100,8 @@ public class MenuManager : MonoBehaviour
     {
         mainWindow.SetActive(false);
         settingsWindow.SetActive(true);
+
+        SoundManager.instance.PlaySound(clickButtonSound);
     }
 
     public void OnSoundToggle()
@@ -112,12 +116,15 @@ public class MenuManager : MonoBehaviour
             soundToggle.gameObject.GetComponent<Image>().sprite = soundOffSprite;
             soundManager.TurnOffSound();
         }
+        SoundManager.instance.PlaySound(clickButtonSound);
     }
 
     public void OnSettingsBackButton()
     {
         mainWindow.SetActive(true);
         settingsWindow.SetActive(false);
+
+        SoundManager.instance.PlaySound(clickButtonSound);
     }
 
 
@@ -127,12 +134,16 @@ public class MenuManager : MonoBehaviour
         garageWindow.SetActive(true);
 
         UpdateGarageImage();
+
+        SoundManager.instance.PlaySound(clickButtonSound);
     }
 
     public void OnGarageBackButton()
     {
         mainWindow.SetActive(true);
         garageWindow.SetActive(false);
+
+        SoundManager.instance.PlaySound(clickButtonSound);
     }
 
     public void OnGarageBuyButton()
@@ -149,6 +160,8 @@ public class MenuManager : MonoBehaviour
             PlayerPrefs.SetInt(PLAYER_HAVE_CAR_BASE + selectedCarIndex.ToString(), 1);
 
             PlayerPrefs.SetInt(GameManager.EQUIPPED_CAR, selectedCarIndex);
+
+            SoundManager.instance.PlaySound(buyButtonSound);
         }
 
         UpdateGarageImage();
@@ -158,6 +171,8 @@ public class MenuManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(GameManager.EQUIPPED_CAR,selectedCarIndex);
         UpdateGarageImage();
+
+        SoundManager.instance.PlaySound(clickButtonSound);
     }
 
     public void OnGarageRightArrowButton()
@@ -167,6 +182,8 @@ public class MenuManager : MonoBehaviour
             selectedCarIndex++;
         }
         UpdateGarageImage();
+
+        SoundManager.instance.PlaySound(clickButtonSound);
     }
 
     public void OnGarageLeftArrowButton()
@@ -176,10 +193,15 @@ public class MenuManager : MonoBehaviour
             selectedCarIndex--;
         }
         UpdateGarageImage();
+
+        SoundManager.instance.PlaySound(clickButtonSound);
     }
 
     public void Quit()
     {
+        SoundManager.instance.PlaySound(clickButtonSound);
+
+        PlayerPrefs.SetInt(GameManager.COINS_COUNT, 100);
         Debug.Log("Quit");
         Application.Quit();
     }
