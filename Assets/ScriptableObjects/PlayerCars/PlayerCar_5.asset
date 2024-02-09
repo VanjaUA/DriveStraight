@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerCar_5
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 5ee276bf40e3aee47ae6a3dc23035ec6, type: 3}
-  cost: 60
+  cost: 100
   boughtByPlayer: 0
   carObject: {fileID: 6276597690569406886, guid: 37404e8018d573348adae26ae08cd96a, type: 3}

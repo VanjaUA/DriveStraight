@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public Player Player { get; private set; }
 
 
+    private float fastestCarMaxSpeed;
+
     [Header("Music")]
     [SerializeField] SoundManager.Sound[] gameMusic;
 
@@ -51,6 +53,8 @@ public class GameManager : MonoBehaviour
 
         int selectedCarIndex = PlayerPrefs.GetInt(EQUIPPED_CAR, 0);
         Player = Instantiate(playerCars[selectedCarIndex].carObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();
+
+        fastestCarMaxSpeed = playerCars[playerCars.Length - 1].carObject.GetComponent<Player>().GetMovementSpeedBounds().max;
     }
 
     private void Start()
@@ -97,6 +101,6 @@ public class GameManager : MonoBehaviour
 
     public float GetFastestCarMaxSpeed() 
     {
-        return playerCars[playerCars.Length - 1].carObject.GetComponent<Player>().GetMovementSpeedBounds().max;
+        return fastestCarMaxSpeed;
     }
 }
